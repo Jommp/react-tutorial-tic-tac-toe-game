@@ -1,4 +1,4 @@
-# react-documentation-project
+# React documentation tutorial project
 This is the application for React tutorial to understand the basis concepts of React
 
 You can use this project, following the next steps:
