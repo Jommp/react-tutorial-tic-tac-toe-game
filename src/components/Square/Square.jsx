@@ -1,18 +1,10 @@
-import { useState } from 'react';
-
 import './Square.css';
 
-export const Square = () => {
-	const [value, setValue] = useState(null);
-
-	const handleClick = () => {
-		setValue('X');
-	}
-
+export const Square = ({ value, onSquareClick }) => {
 	return (
 		<button
 			className="square"
-			onClick={handleClick}
+			onClick={onSquareClick}
 		>
 			{value}
 		</button>
