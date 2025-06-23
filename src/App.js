@@ -4,11 +4,21 @@ import { Square } from '../src/components';
 
 export default () => {
   const [squares, setSquares] = useState(Array(9).fill(null));
+  const [xIsNext, setXIsNext] = useState(true);
+
+  const handleNextPlayer = () => {
+    setXIsNext(!xIsNext);
+    
+    return xIsNext ? 'X' : 'O';
+  }
 
   const handleClick = (index) => {
+    if (squares[index]) return;
+
     const nextSquares = squares.slice();
     
-    nextSquares[index] = 'X';
+    nextSquares[index] = handleNextPlayer();
+    
     setSquares(nextSquares);
   }
 
