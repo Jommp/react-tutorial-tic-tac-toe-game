@@ -13,7 +13,7 @@ export default () => {
   }
 
   const handleClick = (index) => {
-    if (squares[index]) return;
+    if (squares[index] || handleWinner(squares)) return;
 
     const nextSquares = squares.slice();
     
@@ -22,7 +22,16 @@ export default () => {
     setSquares(nextSquares);
   }
 
+  const winner = handleWinner(squares);
+  let status;
+
+  status = winner ? `Winner: ${winner}` : `Next player: ${xIsNext ? 'X' : 'O'}`; 
+
   return <>
+    <div className='status'>
+      {status}
+    </div>
+
     <div className="board-row">
       <Square value={squares[0]} onSquareClick={() => handleClick(0)} />
       <Square value={squares[1]} onSquareClick={() => handleClick(1)} />
@@ -41,4 +50,27 @@ export default () => {
       <Square value={squares[8]} onSquareClick={() => handleClick(8)} />
     </div>
   </>;
+}
+
+const handleWinner = (squares) => {
+  const linesToWin = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6]
+  ];
+
+  for (let i = 0; i < linesToWin.length; i++) {
+    const [a, b, c] = linesToWin[i];
+
+    if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
+      return squares[a];
+    }
+  }
+
+  return null;
 }
