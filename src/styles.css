@@ -56,15 +56,6 @@ body {
   padding: 0;
 }
 
-.board-row:after {
-  clear: both;
-  content: '';
-  display: table;
-}
-
-.status {
-  margin-bottom: 10px;
-}
 .game {
   display: flex;
   flex-direction: row;
